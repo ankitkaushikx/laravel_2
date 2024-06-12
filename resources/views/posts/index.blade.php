@@ -7,7 +7,9 @@
     @if($posts->isEmpty())
         <p class="text-gray-500">No posts available at the moment.</p>
     @else
-        @foreach ($posts as $post)
+    <div class="grid grid-cols-2 gap-6">
+
+    @foreach ($posts as $post)
             <div class="card bg-white shadow-md rounded-lg p-4 mb-6">
                 {{-- Title --}}
                 <h2 class="font-bold text-xl text-gray-800 mb-2">{{$post->title}}</h2>
@@ -26,6 +28,10 @@
                 </div>
             </div>
         @endforeach
+        </div>
+        <div>
+            {{$posts->links()}}
+        </div>
     @endif
 
 </x-layout>
