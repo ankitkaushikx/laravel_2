@@ -11,13 +11,13 @@ class AuthController extends Controller
 
       //Validate
       $request->validate([
-         'username' => ['required', 'max:255'],
+         'username' => ['required', 'max:255', 'min:4'],
          'email' => ['required', 'max:255', 'email'],
          'password' => ['required', 'min:3', 'confirmed']
       ]);
 
-      // Error
-
+ 
+      dd('ok');
       //Register
 
       //Login
