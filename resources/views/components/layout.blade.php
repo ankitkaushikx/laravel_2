@@ -25,7 +25,12 @@
     <p class="username text-sm text-center p-1 shadow-sm">
 {{auth()->user()->username}}
     </p>
-    <a href="" class="block hover:bg-slate-100 pl-4 pr-8 py-2">Dashboard</a>
+    <a href="{{route('dashboard')}}" class="block hover:bg-slate-100 pl-4 pr-8 py-2">Dashboard</a>
+
+    <form action="{{route('logout')}}" method="post">
+      @csrf
+      <button class=" w-full block hover:bg-slate-100 pl-4 pr-8 py-2">Logout</button>
+    </form>
   </div>
   </div>
 @endauth

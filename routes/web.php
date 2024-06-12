@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -8,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 // })->name('home');
 Route::view('/', 'posts.index')->name('home');
 
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 //Registeration
 Route::view('/register', 'auth.register')->name('register');
 Route::post('/register', [AuthController::class, 'register']);
@@ -16,4 +18,6 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::view('/login', 'auth.login')->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
-//Dashboard
+
+//Logout 
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
