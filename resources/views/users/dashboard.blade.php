@@ -5,11 +5,11 @@
         <h2 class="font-bold text-xl mb-4">Create a new Post</h2>
 {{-- session message --}}
 @if (session('success'))
-<div class="bg-green-500">
-  <p class="">{{session('success')}}</p>
-</div>
-  
+  <div class="mb-4">
+    <x-flashMsg msg="{{session('success')}}" bg="bg-gray-500" />
+  </div>
 @endif
+ 
         <form action="{{ route('posts.store') }}" method="post">
             @csrf
 
@@ -38,5 +38,24 @@
                 </button>
             </div>
         </form>
+
+        
+        {{-- USER POST --}}
+        <div class="m-4 text-center">
+          <h1 class="title">Your Latest Post</h1>
+              @if($posts->isEmpty())
+        <p class="text-gray-500">No posts available at the moment.</p>
+    @else
+    <div class="grid grid-cols-2 gap-6">
+
+    @foreach ($posts as $post)
+         <x-postCard :post="$post" />
+        @endforeach
+        </div>
+        <div>
+            {{$posts->links()}}
+        </div>
+    @endif
+        </div>
     </div>
 </x-layout>

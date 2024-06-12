@@ -15,7 +15,7 @@ class PostController extends Controller
     {
         $posts = Post::latest()->paginate(10);
 
-       
+        return view('posts.index',['posts'=> $posts]);
 
     }
 
