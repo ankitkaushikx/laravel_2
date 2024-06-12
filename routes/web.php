@@ -3,18 +3,24 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 // Route::get('/', function () {
 //     return view('posts.index');
 // })->name('home');
-Route::view('/', 'posts.index')->name('home');
+// Route::view('/', 'posts.index')->name('home');
+
+Route::redirect('/', 'posts')->name('home');
 
 Route::middleware('auth')->group(function () {
   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
   Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
+//Setup Our Routes For POST Controller
+Route::resource('posts', PostController::class);
 
+//Middleware to group routes for one  or more middleware
 Route::middleware('guest')->group(function () {
 
   //Registeration
