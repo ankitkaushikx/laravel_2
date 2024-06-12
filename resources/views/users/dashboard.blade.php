@@ -3,7 +3,13 @@
 
     <div class="card bg-white shadow-md rounded-lg p-6 mb-6">
         <h2 class="font-bold text-xl mb-4">Create a new Post</h2>
-
+{{-- session message --}}
+@if (session('success'))
+<div class="bg-green-500">
+  <p class="">{{session('success')}}</p>
+</div>
+  
+@endif
         <form action="{{ route('posts.store') }}" method="post">
             @csrf
 

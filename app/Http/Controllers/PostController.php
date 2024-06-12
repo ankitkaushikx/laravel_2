@@ -13,9 +13,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->paginate(6);
-  
-        return view('posts.index', ['posts'=> $posts]);
+        $posts = Post::latest()->paginate(10);
+
+       
 
     }
 
@@ -40,7 +40,8 @@ class PostController extends Controller
         ]);
         //create post
         Auth::user()->posts()->create($fields);
-       
+
+         return back()->with('success', "Your post was created successfully");
     }
 
     /**
