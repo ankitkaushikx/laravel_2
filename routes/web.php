@@ -15,3 +15,5 @@ Route::post('/register', [AuthController::class, 'register']);
 //Login
 Route::view('/login', 'auth.login')->name('login');
 Route::post('/login', [AuthController::class, 'login']);
+
+//Dashboard
