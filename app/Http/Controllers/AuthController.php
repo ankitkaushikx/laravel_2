@@ -37,14 +37,13 @@ class AuthController extends Controller
 
       //login the user
       if(Auth::attempt($fields, $request->remember)){
-         return redirect()->intended();
+         return redirect()->intended('/dashboard');
       } else {
          return back()->withErrors([
-            'failed' => "The Provided Email and Password do not match over credentails"
+            'failed' => "The Provided Email and Password do not match our credentails"
          ]);
       }
 
-      dd( $request->remember);
    }
 
 //Logout 

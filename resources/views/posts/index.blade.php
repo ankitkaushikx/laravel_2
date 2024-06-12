@@ -1,11 +1,11 @@
 <x-layout>
 @auth
     <h1>
-        You Are Logged In
+        Logged In
     </h1>
 @endauth
 
 @guest
-    You Are Not Logged In
+    Guest
 @endguest
 </x-layout>

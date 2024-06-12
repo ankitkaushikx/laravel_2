@@ -9,15 +9,22 @@ use Illuminate\Support\Facades\Route;
 // })->name('home');
 Route::view('/', 'posts.index')->name('home');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-//Registeration
-Route::view('/register', 'auth.register')->name('register');
-Route::post('/register', [AuthController::class, 'register']);
+Route::middleware('auth')->group(function () {
+  Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+  Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+});
 
-//Login
-Route::view('/login', 'auth.login')->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+
+Route::middleware('guest')->group(function () {
+
+  //Registeration
+  Route::view('/register', 'auth.register')->middleware('guest')->name('register');
+  Route::post('/register', [AuthController::class, 'register']);
+
+  //Login
+  Route::view('/login', 'auth.login')->middleware('guest')->name('login');
+  Route::post('/login', [AuthController::class, 'login']);
+});
 
 
 //Logout 
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
