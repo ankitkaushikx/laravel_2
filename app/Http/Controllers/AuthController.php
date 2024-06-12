@@ -13,7 +13,7 @@ class AuthController extends Controller
       //Validate
     $fields =   $request->validate([
          'username' => ['required', 'max:255', 'min:4'],
-         'email' => ['required', 'max:255', 'email'],
+         'email' => ['required', 'max:255', 'email', 'unique:users'],
          'password' => ['required', 'min:3', 'confirmed']
       ]);
 
@@ -26,5 +26,6 @@ class AuthController extends Controller
       Auth::login($user);
 
       //Redirect
+      return redirect()->route('home');
    }
 }
