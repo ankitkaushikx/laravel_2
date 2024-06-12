@@ -28,4 +28,22 @@ class AuthController extends Controller
       //Redirect
       return redirect()->route('home');
    }
+// login user
+   public  function login(Request $request){
+      $fields = $request->validate([
+         'email' => ['required', 'max:255', 'email'],
+         'password' => ['required']
+      ]);
+
+      //login the user
+      if(Auth::attempt($fields, $request->remember)){
+         return redirect()->intended();
+      } else {
+         return back()->withErrors([
+            'failed' => "The Provided Email and Password do not match over credentails"
+         ]);
+      }
+
+      dd( $request->remember);
+   }
 }
