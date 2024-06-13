@@ -41,7 +41,7 @@
 
         
         {{-- USER POST --}}
-        <div class="m-4 text-center">
+        <div class="m-4 ">
           <h1 class="title">Your Latest Post</h1>
               @if($posts->isEmpty())
         <p class="text-gray-500">No posts available at the moment.</p>

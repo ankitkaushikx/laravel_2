@@ -20,6 +20,8 @@ Route::middleware('auth')->group(function () {
 //Setup Our Routes For POST Controller
 Route::resource('posts', PostController::class);
 
+Route::get('/{user}/posts', [DashboardController::class, 'userPosts'])->name('posts.user');
+
 //Middleware to group routes for one  or more middleware
 Route::middleware('guest')->group(function () {
 
@@ -31,6 +33,5 @@ Route::middleware('guest')->group(function () {
   Route::view('/login', 'auth.login')->middleware('guest')->name('login');
   Route::post('/login', [AuthController::class, 'login']);
 });
-
 
 //Logout 
