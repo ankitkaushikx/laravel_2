@@ -5,10 +5,15 @@
         <h2 class="font-bold text-xl mb-4">Create a new Post</h2>
 {{-- session message --}}
 @if (session('success'))
-  <div class="mb-4">
-    <x-flashMsg msg="{{session('success')}}" bg="bg-gray-500" />
+  <div>
+    <x-flashMsg msg="{{ session('success') }}" bg="bg-green-500" />
+  </div>
+@elseif (session('delete'))
+  <div>
+    <x-flashMsg msg="{{ session('delete') }}" bg="bg-red-500" />
   </div>
 @endif
+
  
         <form action="{{ route('posts.store') }}" method="post">
             @csrf
@@ -49,7 +54,16 @@
     <div class="grid grid-cols-2 gap-6">
 
     @foreach ($posts as $post)
-         <x-postCard :post="$post" />
+         <x-postCard :post="$post" >
+         {{-- Update Post --}}
+           <a href="{{route('posts.edit', $post)}}" class="bg-green-500 text-white px-2 py-1 text-xs rounded-md">Update</a>
+         {{-- DELETE POST --}}
+         <form action="{{route('posts.destroy' , $post)}}" method="post">
+            @csrf
+            @method('DELETE')
+            <Button class="bg-red-500 text-white px-2 py-1 text-xs rounded-md">Delete</Button>
+         </form>
+         </x-postCard>
         @endforeach
         </div>
         <div>
