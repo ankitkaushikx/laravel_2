@@ -1,5 +1,13 @@
 @props(['post', 'full'=> false])
-<div class="card bg-white shadow-md rounded-lg p-4 mb-6">
+<div class="card bg-white shadow-sm rounded-lg p-4 mb-6 border">
+  {{-- COVER PHOTO --}}
+  <div class="flex justify-center">
+@if ($post->image)
+   <img src="{{ asset('storage/' . $post->image) }}" alt="" class="w-100 mb-5" style="max-height: 200px; min-height:200px">
+@else
+   <img src="https://placehold.co/800x400" alt="" class="w-100 mb-5" style="max-height: 200px; min-height:200px">
+@endif
+  </div>
                 {{-- Title --}}
                 <h2 class="font-bold text-xl text-gray-800 mb-2">{{$post->title}}</h2>
 

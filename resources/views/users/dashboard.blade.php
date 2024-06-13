@@ -1,5 +1,5 @@
 <x-layout>
-    <h1 class="title text-2xl font-bold mb-6">Hello {{ auth()->user()->username }}</h1>
+    <h1 class="title text-2xl font-bold mb-6">Hello {{ auth()->user()->username }}, You Have <span>{{$posts->total()}}</span>Posts</h1>
 
     <div class="card bg-white shadow-md rounded-lg p-6 mb-6">
         <h2 class="font-bold text-xl mb-4">Create a new Post</h2>
@@ -15,7 +15,7 @@
 @endif
 
  
-        <form action="{{ route('posts.store') }}" method="post">
+        <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             {{-- Post Title --}}
@@ -35,7 +35,16 @@
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
-
+             {{-- POST IMAGE --}}
+             <div class="mb-4">
+              <label for="image">
+                Cover Photo
+              </label>
+              <input type="file" name="image" id="image">
+              @error('image')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+             </div>
             {{-- Submit Button --}}
             <div>
                 <button type="submit" class="bg-slate-900 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-md shadow-sm">
