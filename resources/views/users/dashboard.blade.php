@@ -1,5 +1,5 @@
 <x-layout>
-    <h1 class="title text-2xl font-bold mb-6">Hello {{ auth()->user()->username }}, You Have <span>{{$posts->total()}}</span>Posts</h1>
+    <h1 class="title text-2xl font-bold mb-6">Hello {{ auth()->user()->username }}, You Have <span>{{$posts->total()}}</span> Posts</h1>
 
     <div class="card bg-white shadow-md rounded-lg p-6 mb-6">
         <h2 class="font-bold text-xl mb-4">Create a new Post</h2>

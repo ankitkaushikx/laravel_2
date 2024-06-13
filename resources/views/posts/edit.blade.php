@@ -7,7 +7,7 @@
     <x-flashMsg msg="{{ session('success') }}" bg="bg-green-500" />
   </div>
 @endif
-        <form action="{{ route('posts.update', $post) }}" method="post">
+        <form action="{{ route('posts.update', $post) }}" method="post" enctype="multipart/form-data">
             @csrf
 @method('PUT')
             {{-- Post Title --}}
@@ -27,6 +27,26 @@
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
+            {{-- Current Cover Photo if Exist --}}
+            
+          @if ($post->image)
+    <div class="flex flex-col items-center justify-center mb-5">
+        <label class="text-gray-700 text-lg font-semibold mb-2">Current Cover Photo</label>
+        <div class="relative overflow-hidden rounded-lg shadow-lg">
+            <img src="{{ asset('storage/' . $post->image) }}" alt="Cover Photo" class="w-full h-48 object-cover">
+        </div>
+    </div>
+@endif
+{{-- COVER PHOTO INPUT FILE --}}
+<div class="mb-4">
+              <label for="image">
+                Cover Photo
+              </label>
+              <input type="file" name="image" id="image">
+              @error('image')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+             </div>
 
             {{-- Submit Button --}}
             <div>
