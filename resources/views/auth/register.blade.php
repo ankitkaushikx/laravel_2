@@ -36,7 +36,13 @@
                 <label for="password_confirmation">Confirm Password</label>
                 <input type="password" name="password_confirmation" id="password_confirmation" class="input">
             </div>
-
+  
+            {{-- SUBSCRIBED TO EMAIL NEWSLETTER --}}
+            <div class="mb-4" style="display: flex; align-items: center;">
+             <input type="checkbox" name="subscribe" id="subscribe">
+             <label for="subscribe" class="pl-2">Subscribe to our NewsLetter</label>
+            </div>
+            {{-- SUBMIT BUTTON --}}
             <div class="mb-4">
                 <button type="submit" class="w-full px-4 py-2 bg-indigo-500 text-white rounded">Register</button>
             </div>
