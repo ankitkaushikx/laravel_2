@@ -1,9 +1,11 @@
 <x-layout>
-    <h2 class="title">Login</h2>
+    <h2 class="title">Reset Your Password</h2>
     <div class="mx-auto max-w-screen-sm card">
-        <form action="{{ Route('login') }}" method="POST">
+        <form action="{{route('password.update')}}" method="POST">
             @csrf
 
+            {{-- TOKEN --}}
+            <input type="hidden" name="token" value="{{$token}}">
 
 
             {{-- EMAIL --}}
@@ -23,20 +25,17 @@
                     <p class="error">{{ $message }}</p>
                 @enderror
             </div>
-            {{-- Remember Checkbox --}}
-            <div class="mb-4" style="display: flex; align-items: center; justify-content: space-between;">
-                <div style="display: flex; align-items: center;">
-                    <input type="checkbox" name="remember" id="remember" style="margin-right: 0.5rem;">
-                    <label for="remember">Remember Me</label>
-                </div>
-                <a href="{{route('password.request')}}" class="text-blue-600">Forget Your Password ?</a>
-            </div>
- @error('failed')
-                    <p class="error">{{ $message }}</p>
-                @enderror
 
+            {{-- PASSWORD CONFIRMATION --}}
             <div class="mb-4">
-                <button type="submit" class="w-full px-4 py-2 bg-indigo-500 text-white rounded">Register</button>
+                <label for="password_confirmation">Confirm Password</label>
+                <input type="password" name="password_confirmation" id="password_confirmation" class="input">
+            </div>
+
+
+            {{-- SUBMIT BUTTON --}}
+            <div class="mb-4">
+                <button type="submit" class="w-full px-4 py-2 bg-indigo-500 text-white rounded">Reset Password</button>
             </div>
         </form>
     </div>
